@@ -1,21 +1,21 @@
 (function (document) {
   var lineup = document.querySelectorAll('div.line-up ul li');
-  var headliner_names, support_names = [], [];
+  var headliner_names = [], support_names = [];
   for (i in lineup) {
+    if (lineup[i].children == undefined) { continue; }
     artist_name = escape(lineup[i].children[0].textContent.trim());
-    switch (lineup[i].attributes['class']) {
-      case "headliner":
-        headliner_names.push(artist_name);
-        break;
-      default:
-        support_names.push(artist_name);
-        break;
+    if (lineup[i].attributes['class'] == undefined) {
+      support_names.push(artist_name);
+    } else {
+      headliner_names.push(artist_name);
     }
   }
 
   var date_string = document.querySelector('div.brief h2').textContent.trim();
   var date = new Date(date_string);
-  var day, month, year = date.getDate(), date.getMonth() + 1, date.getFullYear();
+  var day = date.getDate(),
+      month = date.getMonth() + 1,
+      year = date.getFullYear();
 
   var venue_path = document.querySelector('div.location span a').attributes.href.value;
   var venue_id = venue_path.split('/').pop();
