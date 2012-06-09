@@ -3,7 +3,7 @@
   var headliner_names = [], support_names = [];
   for (i in lineup) {
     if (lineup[i].children == undefined) { continue; }
-    artist_name = encodeURI(lineup[i].children[0].textContent.trim());
+    artist_name = encodeURIComponent(lineup[i].children[0].textContent.trim());
     if (lineup[i].attributes['class'] == undefined) {
       support_names.push(artist_name);
     } else {
