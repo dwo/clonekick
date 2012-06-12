@@ -22,18 +22,18 @@
   var base_url = 'http://www.songkick.com/concerts/new?';
   var final_url = base_url.concat('venue_id=' + venue_id);
   for (i = 0; i < headliner_names.length; i++) {
-    final_url = final_url + "&event[headliner_names][" + i.toString() + "]=";
+    final_url = final_url + '&event[headliner_names][' + i.toString() + ']=';
     final_url = final_url + headliner_names[i];
   }
 
   for (i = 0; i < support_names.length; i++) {
-    final_url = final_url + "&event[support_names][" + i.toString() + "]=";
+    final_url = final_url + '&event[support_names][' + i.toString() + ']=';
     final_url = final_url + support_names[i];
   }
 
-  final_url = final_url + "&event[date][day]=" + day;
-  final_url = final_url + "&event[date][month]=" + month;
-  final_url = final_url + "&event[date][year]=" + year;
+  final_url = final_url + '&event[date][day]=' + day;
+  final_url = final_url + '&event[date][month]=' + month;
+  final_url = final_url + '&event[date][year]=' + year;
 
   document.location = final_url;
 }(document));
