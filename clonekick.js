@@ -11,10 +11,13 @@
     }
   }
 
-  var date_string = document.querySelector('div.brief h4').textContent.trim();
+  var date_string = document.querySelector('div.brief h4 time').attributes.datetime.value;
   var date = new Date(date_string);
   var day = date.getDate(), month = date.getMonth() + 1,
-      year = date.getFullYear();
+      year = date.getFullYear(),
+      time = '0' + date.getHours() + ':0' + date.getMinutes();
+
+  time = time.replace(/^0(\d{2}):(?:0(\d{2})|(\d{2}))$/, '$1:$2$3');
 
   var venue_path = document.querySelector('div.location a').attributes.href.value;
   var venue_id = venue_path.split('/').pop();
@@ -34,6 +37,9 @@
   final_url = final_url + '&event[date][day]=' + day;
   final_url = final_url + '&event[date][month]=' + month;
   final_url = final_url + '&event[date][year]=' + year;
+  if (time !== '0:0') {
+    final_url = final_url + '&event[start_time]=' + time;
+  }
 
   document.location = final_url;
 }(document));
