@@ -11,7 +11,7 @@
     }
   }
 
-  var date_string = document.querySelector('div.brief h2').textContent.trim();
+  var date_string = document.querySelector('div.brief h4').textContent.trim();
   var date = new Date(date_string);
   var day = date.getDate(), month = date.getMonth() + 1,
       year = date.getFullYear();
