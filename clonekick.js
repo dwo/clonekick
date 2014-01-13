@@ -19,7 +19,7 @@
   var venue_path = document.querySelector('div.location a').attributes.href.value;
   var venue_id = venue_path.split('/').pop();
 
-  var base_url = 'http://www.songkick.com/concerts/new?';
+  var base_url = 'https://www.songkick.com/concerts/new?';
   var final_url = base_url.concat('venue_id=' + venue_id);
   for (i = 0; i < headliner_names.length; i++) {
     final_url = final_url + '&event[headliner_names][' + i.toString() + ']=';
