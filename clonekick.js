@@ -37,7 +37,7 @@
   final_url = final_url + '&event[date][day]=' + day;
   final_url = final_url + '&event[date][month]=' + month;
   final_url = final_url + '&event[date][year]=' + year;
-  if (time !== '0:0') {
+  if (time !== '01:00') {
     final_url = final_url + '&event[start_time]=' + time;
   }
 
