@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Clonekick : A Songkick bookmarklet to clone the event you are looking at" />
+    <meta name="description" content="Clonekick is a bookmarklet for adding similar events to Songkick quickly." />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -18,23 +18,23 @@
           <a id="forkme_banner" href="https://github.com/dwo/clonekick">View on GitHub</a>
 
           <h1 id="project_title">Clonekick</h1>
-          <h2 id="project_tagline">A Songkick bookmarklet to clone the event you are looking at</h2>
+          <h2 id="project_tagline">A bookmarklet for adding similar events to Songkick quickly.</h2>
         </header>
     </div>
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>Writing out the same information over and over again is boring. Let's just clone
-the event and change the minor details.</p>
+        <p>Adding many similar events (with the same lineup, or the same venue)
+        to Songkick can get boring. This bookmarklet allows you to "clone" the
+        details of the event you are viewing on Songkick into a new concert
+        form.</p>
 
-<p>Drag this onto your toolbar: <a href="javascript:(function(document){var lineup=document.querySelectorAll('div.line-up ul li'),headliner_names=[],support_names=[],i=0;for(i=0;i<lineup.length;i++){var artist_name=encodeURIComponent(lineup[i].children[0].textContent.trim());if(lineup[i].attributes['class']===undefined){support_names.push(artist_name);}else{headliner_names.push(artist_name);}}
-var date_string=document.querySelector('div.brief h4 time').attributes.datetime.value;var date=new Date(date_string);var day=date.getDate(),month=date.getMonth()+1,year=date.getFullYear(),time='0'+date.getHours()+':0'+date.getMinutes();time=time.replace(/^0(\d{2}):(?:0(\d{2})|(\d{2}))$/,'$1:$2$3');var venue_path=document.querySelector('div.location a').attributes.href.value;var venue_id=venue_path.split('/').pop();var base_url='https://www.songkick.com/concerts/new?';var final_url=base_url.concat('venue_id='+venue_id);for(i=0;i<headliner_names.length;i++){final_url=final_url+'&event[headliner_names]['+i.toString()+']=';final_url=final_url+headliner_names[i];}
-for(i=0;i<support_names.length;i++){final_url=final_url+'&event[support_names]['+i.toString()+']=';final_url=final_url+support_names[i];}
-final_url=final_url+'&event[date][day]='+day;final_url=final_url+'&event[date][month]='+month;final_url=final_url+'&event[date][year]='+year;if(time!=='01:00'){final_url=final_url+'&event[start_time]='+time;}
-document.location=final_url;}(document));">clonekick</a>.
+        <p>Drag this onto your toolbar: <a href="javascript:(function(k){var f='https://www.songkick.com/concerts/new?',h=k.querySelectorAll('div.line-up ul li'),n=k.querySelector('div.brief time').attributes.datetime.value,q=k.querySelector('div.location a').attributes.href.value,m=[],j=[],d,p,c,l,e,g,b,a,o;for(d=0;d<h.length;d++){p=encodeURIComponent(h[d].children[0].textContent.trim());if(h[d].attributes['class']===undefined){j.push(p);}else{m.push(p);}}c=new Date(n);l=c.getDate();e=c.getMonth()+1;g=c.getFullYear();b='0'+c.getHours()+':0'+c.getMinutes();b=b.replace(/^0(\d{2}):(?:0(\d{2})|(\d{2}))$/,'$1:$2$3');a=q.split('/').pop();o=f.concat('venue_id='+a);for(d=0;d<m.length;d++){o=o+'&event[headliner_names]['+d.toString()+']=';o=o+m[d];}for(d=0;d<j.length;d++){o=o+'&event[support_names]['+d.toString()+']=';o=o+j[d];}o=o+'&event[date][day]='+l;o=o+'&event[date][month]='+e;o=o+'&event[date][year]='+g;if(b!=='01:00'){o=o+'&event[start_time]='+b;}k.location=o;}(document));">clonekick</a>.
 
-<p>Click the bookmarklet on any Songkick concert to be taken to a new concert form with artists, venue and date copied in automatically.</p>
+        <p>Click the bookmarklet whilst viewing any concert on songkick.com to
+        be taken to a new concert form with artists, venue, date and time
+        copied into the input fields automatically.</p>
       </section>
     </div>
 
@@ -45,6 +45,5 @@ document.location=final_url;}(document));">clonekick</a>.
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
   </body>
 </html>
