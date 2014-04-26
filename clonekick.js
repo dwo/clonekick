@@ -1,10 +1,11 @@
+// version 0.0.3 (2014-04-26)
 (function (document) {
-  var baseUrl = 'https://www.songkick.com/concerts/new?',
+  var finalUrl = 'https://www.songkick.com/concerts/new?',
       lineup = document.querySelectorAll('div.line-up ul li'),
       dateString = document.querySelector('div.brief time').attributes.datetime.value,
       venuePath = document.querySelector('div.location a').attributes.href.value,
       headlinerNames = [], supportNames = [],
-      i, artistName, date, day, month, year, time, venueId, finalUrl;
+      i, artistName, dateAndTime, day, month, year, startTime, venueId;
 
   for (i = 0; i < lineup.length; i++) {
     artistName = encodeURIComponent(lineup[i].children[0].textContent.trim());
@@ -15,32 +16,36 @@
     }
   }
 
-  date = new Date(dateString);
-  day = date.getDate();
-  month = date.getMonth() + 1;
-  year = date.getFullYear();
-
-  time = dateString.substr(dateString.indexOf('T') + 1, 5);
-
-  venueId = venuePath.split('/').pop();
-
-  finalUrl = baseUrl.concat('venue_id=' + venueId);
   for (i = 0; i < headlinerNames.length; i++) {
-    finalUrl = finalUrl + '&event[headliner_names][' + i.toString() + ']=';
-    finalUrl = finalUrl + headlinerNames[i];
+    finalUrl += '&event[headliner_names][' + i.toString() + ']=';
+    finalUrl += headlinerNames[i];
   }
 
   for (i = 0; i < supportNames.length; i++) {
-    finalUrl = finalUrl + '&event[support_names][' + i.toString() + ']=';
-    finalUrl = finalUrl + supportNames[i];
+    finalUrl += '&event[support_names][' + i.toString() + ']=';
+    finalUrl += supportNames[i];
   }
 
-  finalUrl = finalUrl + '&event[date][day]=' + day;
-  finalUrl = finalUrl + '&event[date][month]=' + month;
-  finalUrl = finalUrl + '&event[date][year]=' + year;
-  if (time !== '01:00') {
-    finalUrl = finalUrl + '&event[start_time]=' + time;
+  /* create a tuple like ['%Y-%m-%d', '%H:%M'] by dropping the seconds and
+     timezone (last 9 characters) and then splitting on T */
+  dateAndTime = dateString.substr(0, dateString.length - 9).split('T');
+
+  if (dateAndTime.length > 1) {
+    startTime = dateAndTime.pop();
+    finalUrl += '&event[start_time]=' + startTime;
   }
+
+  year = dateAndTime[0].split('-')[0];
+  finalUrl += '&event[date][year]=' + year;
+
+  month = dateAndTime[0].split('-')[1];
+  finalUrl += '&event[date][month]=' + month;
+
+  day = dateAndTime[0].split('-')[2];
+  finalUrl += '&event[date][day]=' + day;
+
+  venueId = venuePath.split('/').pop(); // TODO handle case of no venue
+  finalUrl += 'venue_id=' + venueId;
 
   document.location = finalUrl;
 }(document));
