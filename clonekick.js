@@ -20,8 +20,7 @@
   month = date.getMonth() + 1;
   year = date.getFullYear();
 
-  time = '0' + date.getHours() + ':0' + date.getMinutes();
-  time = time.replace(/^0(\d{2}):(?:0(\d{2})|(\d{2}))$/, '$1:$2$3');
+  time = dateString.substr(dateString.indexOf('T') + 1, 5);
 
   venueId = venuePath.split('/').pop();
 
