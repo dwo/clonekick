@@ -3,7 +3,8 @@
       lineup = document.querySelectorAll('div.line-up ul li'),
       dateString = document.querySelector('div.brief time').attributes.datetime.value,
       venuePath = document.querySelector('div.location a').attributes.href.value,
-      headlinerNames = [], supportNames = [];
+      headlinerNames = [], supportNames = [],
+      i, artistName, date, day, month, year, time, venueId, finalUrl;
 
   for (i = 0; i < lineup.length; i++) {
     artistName = encodeURIComponent(lineup[i].children[0].textContent.trim());
