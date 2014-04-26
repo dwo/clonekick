@@ -1,5 +1,9 @@
 // version 0.0.3 (2014-04-26)
 (function (document) {
+  if (document.location.href.match(/^https?:\/\/www\.songkick\.com\/concerts\/\d+/) === null) {
+    return false;
+  }
+
   var finalUrl = 'https://www.songkick.com/concerts/new?',
       lineup = document.querySelectorAll('div.line-up ul li'),
       dateString = document.querySelector('div.brief time').attributes.datetime.value,
