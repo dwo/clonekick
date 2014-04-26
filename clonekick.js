@@ -4,7 +4,7 @@
     return false;
   }
 
-  var finalUrl = 'https://www.songkick.com/concerts/new?',
+  var finalUrl = 'https://www.songkick.com/concerts/new?r=clonekick',
       lineup = document.querySelectorAll('div.line-up ul li'),
       dateString = document.querySelector('div.brief time').attributes.datetime.value,
       venuePath = document.querySelector('div.location a').attributes.href.value,
@@ -49,7 +49,7 @@
   finalUrl += '&event[date][day]=' + day;
 
   venueId = venuePath.split('/').pop(); // TODO handle case of no venue
-  finalUrl += 'venue_id=' + venueId;
+  finalUrl += '&venue_id=' + venueId;
 
   document.location = finalUrl;
 }(document));
