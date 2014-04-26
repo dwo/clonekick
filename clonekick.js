@@ -1,7 +1,7 @@
 (function (document) {
   var baseUrl = 'https://www.songkick.com/concerts/new?',
       lineup = document.querySelectorAll('div.line-up ul li'),
-      dateString = document.querySelector('div.brief h6 time').attributes.datetime.value,
+      dateString = document.querySelector('div.brief time').attributes.datetime.value,
       venuePath = document.querySelector('div.location a').attributes.href.value,
       headlinerNames = [], supportNames = [];
 
