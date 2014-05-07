@@ -26,9 +26,9 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <p>Adding many similar events (with the same lineup, or the same venue)
-        to Songkick can get boring. This bookmarklet allows you to "clone" the
-        details of the event you are viewing on Songkick into a new concert
-        form.</p>
+        to <a href="http://www.songkick.com">Songkick</a> can get boring. This
+        bookmarklet allows you to "clone" the details of the event you are
+        viewing on Songkick into a new concert form.</p>
 
         <p>Click and drag this onto your bookmarks toolbar: <a href="javascript:(function(h){if(h.location.href.match(/^https?:\/\/www\.songkick\.com\/concerts\/\d+/)===null){return false;}var m='https://www.songkick.com/concerts/new?r=clonekick',f=h.querySelectorAll('div.line-up ul li'),l=h.querySelector('div.brief time').attributes.datetime.value,o=h.querySelector('div.location a').attributes.href.value,k=[],g=[],c,n,j,d,e,a,b;for(c=0;c<f.length;c++){n=encodeURIComponent(f[c].children[0].textContent.trim());if(f[c].attributes['class']===undefined){g.push(n);}else{k.push(n);}}for(c=0;c<k.length;c++){m+='&event[headliner_names]['+c.toString()+']=';m+=k[c];}for(c=0;c<g.length;c++){m+='&event[support_names]['+c.toString()+']=';m+=g[c];}if(l.indexOf('T')>0){a=l.substr(0,l.length-9).split('T').pop();m+='&event[start_time]='+a;}e=l.split('T')[0].split('-')[0];m+='&event[date][year]='+e;d=l.split('T')[0].split('-')[1];m+='&event[date][month]='+d;j=l.split('T')[0].split('-')[2];m+='&event[date][day]='+j;b=o.split('/').pop();m+='&venue_id='+b;h.location=m;}(document));">clonekick</a>.
 
